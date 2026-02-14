@@ -40,6 +40,7 @@ app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html')
 })
 app.get('/style.css', (req, res) => {
+  res.setHeader('Content-Type', 'text/css')
     res.sendFile(__dirname + '/style.css')
 })
 app.get('/mainscript.js', (req, res) => {
