@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Chot</title>
+        <link rel="stylesheet" href="./style.css">
+    </head>
+    <body>
+        <div id="topbar">
+            <h3>New chat system by ehog once again</h3>
+            <button id="signupbtn" onclick="window.location.href = '/signup'">Sign Up (make account)</button>
+            <button id="signinbtn" onclick="window.location.href = '/signin'">Sign In (log in)</button>
+        </div>
+        <div id="chatsbar">
+            <button class="chatbtn" id="ncbtn">+</button>
+        </div>
+        <div id="mainbox"></div>
+        <div id="rightbar">
+            <input id="sendinginp">
+            <button onclick='
+            (async()=>{
+                const sres = await fetch("send", {
+                    credentials:"include",
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({chat: cchat, content: document.getElementById("sendinginp").value})
+                })
+                if (sres.ok){
+                    fmsgs()
+                }
+            })()
+            '>Send</button>
+        </div>
+        <div id="ccbox">
+            <h2>create chat</h2><br>
+            <label for="cnameinp">Chat name</label>
+            <input id="cnameinp"><br>
+            <h4>users</h4>
+            <label for="ccusersinp">Add user</label><br>
+            <input id="ccusersinp"> <button id="ccaubtn">Add</button>
+            <ul id="ccusersli">
+                <li>You <button disabled>Remove</button></li>
+            </ul><br>
+            <button id="cccbtn">Create!</button>
+        </div>
+        <script src="/mainscript.js" defer></script>
+    </body>
+</html>
