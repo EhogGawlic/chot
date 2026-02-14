@@ -363,7 +363,7 @@ app.get('/hand.ttf', (req, res) => {
 app.get('/signin', (req, res) => {
     res.sendFile(__dirname + '/signin.html')
 })
-app.listen(8080, (err) => {
+app.listen(process.env.PORT, (err) => {
     if (err) {
         throw new Error(err)
     }
