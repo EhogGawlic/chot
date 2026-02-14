@@ -27,10 +27,11 @@ app.use(express.json())
 const storage = multer.memoryStorage()
 const upload = multer({ storage })
 let db = sql.createPool({
-    host: 'localhost',
-    user: 'root',
-    password: process.env.PASS,
-    database: 'chot',
+    host: process.env.DB_HOST || 'localhost',
+    user: process.env.DB_USER || 'root',
+    password: process.env.DB_PASS || process.env.PASS,
+    database: process.env.DB_NAME || 'chot',
+    port: process.env.DB_PORT || 3306,
     waitForConnections: true,
     connectionLimit: 10,
     queueLimit: 0,
@@ -40,7 +41,7 @@ app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html')
 })
 app.get('/style.css', (req, res) => {
-  res.setHeader('Content-Type', 'text/css')
+    res.setHeader('Content-Type', 'text/css')
     res.sendFile(__dirname + '/style.css')
 })
 app.get('/mainscript.js', (req, res) => {
